@@ -53,9 +53,8 @@ gem 'bootsnap', require: false
 # Added gems
 # bundler-audit provides patch-level verification
 
-  # Catch unsafe migrations
-  gem 'strong_migrations'
-
+# Catch unsafe migrations
+gem 'strong_migrations'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -77,7 +76,6 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
-
 
   # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
   gem 'annotate'
