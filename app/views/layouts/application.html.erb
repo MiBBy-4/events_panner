@@ -11,6 +11,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if current_user %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+    <%= render 'shared/alerts' %>
+    <main class="container mt-3 main-container">
+      <%= yield %>
+    </main>
   </body>
 </html>
