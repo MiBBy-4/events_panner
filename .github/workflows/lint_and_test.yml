@@ -17,9 +17,9 @@ jobs:
     name: Lint and audit code
     runs-on: ubuntu-20.04
     steps:
-     - name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{env.RUBY_VERSION}}
