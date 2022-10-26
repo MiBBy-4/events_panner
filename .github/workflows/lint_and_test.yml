@@ -17,11 +17,18 @@ jobs:
     name: Lint and audit code
     runs-on: ubuntu-20.04
     steps:
+     - name: Checkout code
+        uses: actions/checkout@v3
+        
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{env.RUBY_VERSION}}
           bundler-cache: true
 
+      - name: Prepare ENV
+        run: |
+          sudo apt-get update
+          sudo apt-get install libvips42=8.9.1-2
       - name: Run Bundler check and audit
         run: bundle exec bundle-audit check --update
 
