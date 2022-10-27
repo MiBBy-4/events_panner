@@ -15,7 +15,6 @@ module EventsPlanner
 
     config.generators do |generate|
       generate.test_framework false
-      
     end
     # Configuration for the application, engines, and railties goes here.
     #
