@@ -38,43 +38,43 @@ jobs:
       - name: Run Rubocop
         run: bundle exec rubocop
 
- test:
-    needs: lint
-    name: Test using RSpec
-    runs-on: ubuntu-20.04
-    services:
-      postgres:
-        image: postgres:12.12
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_HOST_AUTH_METHOD: trust
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  test:
+      needs: lint
+      name: Test using RSpec
+      runs-on: ubuntu-20.04
+      services:
+        postgres:
+          image: postgres:12.12
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_HOST_AUTH_METHOD: trust
+          ports:
+            - 5432:5432
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{env.RUBY_VERSION}}
-          bundler-cache: true
+        - uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: ${{env.RUBY_VERSION}}
+            bundler-cache: true
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{env.NODE_VERSION}}
-          cache: yarn
+        - uses: actions/setup-node@v2
+          with:
+            node-version: ${{env.NODE_VERSION}}
+            cache: yarn
 
-      - name: Prepare ENV
-        run: |
-          sudo apt-get update
-          sudo apt-get install libvips42=8.9.1-2
-          bundle exec secrets pull -e development -y
-          yarn install
-          bundle exec bin/rails db:test:prepare
-      - name: Run RSpec
-        run: bundle exec rspec spec     
+        - name: Prepare ENV
+          run: |
+            sudo apt-get update
+            sudo apt-get install libvips42=8.9.1-2
+            bundle exec secrets pull -e development -y
+            yarn install
+            bundle exec bin/rails db:test:prepare
+        - name: Run RSpec
+          run: bundle exec rspec spec     
