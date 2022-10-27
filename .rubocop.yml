@@ -10,6 +10,7 @@ AllCops:
     - 'config/**/**'
     - 'bin/**/**'
     - 'lib/**/**'
+    - 'vendor/'
 
 Style/Documentation:
   Enabled: false
