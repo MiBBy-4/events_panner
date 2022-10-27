@@ -73,7 +73,6 @@ jobs:
           run: |
             sudo apt-get update
             sudo apt-get install libvips42=8.9.1-2
-            bundle exec secrets pull -e development -y
             yarn install
             bundle exec bin/rails db:test:prepare
         - name: Run RSpec
