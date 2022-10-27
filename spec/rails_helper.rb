@@ -1,27 +1,13 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # frozen_string_literal: true
 
-=======
->>>>>>> e239ec5... feat: add rspec-rails, factory_bot and faker gems, install rspec
-=======
-# frozen_string_literal: true
-
->>>>>>> 358280c... refactor: rubocop makes sense
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+
 # Prevent database truncation if the environment is production
-<<<<<<< HEAD
-<<<<<<< HEAD
 abort('The Rails environment is running in production mode!') if Rails.env.production?
-=======
-abort("The Rails environment is running in production mode!") if Rails.env.production?
->>>>>>> e239ec5... feat: add rspec-rails, factory_bot and faker gems, install rspec
-=======
-abort('The Rails environment is running in production mode!') if Rails.env.production?
->>>>>>> 358280c... refactor: rubocop makes sense
+
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -48,10 +34,6 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7f09681... feat: configurate rspec
   # To include factory_bot
   config.include FactoryBot::Syntax::Methods
 
@@ -60,13 +42,6 @@ RSpec.configure do |config|
 
   # To infer from the location of the spec file
   config.infer_spec_type_from_file_location!
-<<<<<<< HEAD
-=======
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
->>>>>>> e239ec5... feat: add rspec-rails, factory_bot and faker gems, install rspec
-=======
->>>>>>> 7f09681... feat: configurate rspec
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
