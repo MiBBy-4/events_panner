@@ -320,7 +320,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
-  strong_migrations
+  strong_migrations (~> 0.8.0)
   turbo-rails
   tzinfo-data
   web-console
