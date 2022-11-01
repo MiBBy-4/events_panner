@@ -6,6 +6,11 @@ require:
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.0
+  Exclude:
+    - 'config/**/**'
+    - 'bin/**/**'
+    - 'lib/**/**'
+    - 'vendor/**/**'
 
 Style/Documentation:
   Enabled: false

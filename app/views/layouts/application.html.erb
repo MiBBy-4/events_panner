@@ -7,10 +7,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if current_user %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+    <%= render 'shared/alerts' %>
+    <main class="container mt-3 main-container">
+      <%= yield %>
+    </main>
   </body>
 </html>
