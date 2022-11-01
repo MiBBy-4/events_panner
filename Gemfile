@@ -54,7 +54,7 @@ gem 'sassc-rails'
 # bundler-audit provides patch-level verification
 
 # Catch unsafe migrations
-gem 'strong_migrations', '~> 0.8.0'
+gem 'strong_migrations'
 
 gem 'devise'
 
