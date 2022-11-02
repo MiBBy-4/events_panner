@@ -1,0 +1,9 @@
+.event-page-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.event-footer {
+  display: flex;
+  justify-content: space-between;
+}
