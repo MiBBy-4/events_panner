@@ -2,9 +2,10 @@
 
 RSpec.describe 'Event edit' do
   let(:user) { create(:user) }
+  let(:event_category) { create(:event_category, user: user) }
 
   context 'when authenticated' do
-    let(:event) { create(:event, user: user, datetime: datetime) }
+    let(:event) { create(:event, user: user, datetime: datetime, event_category: event_category) }
 
     context 'when not authorized' do
       let(:another_user) { create(:user) }

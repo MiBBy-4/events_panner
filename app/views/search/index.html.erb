@@ -1,4 +1,5 @@
-<%= render 'search/form' %>
+<%= render 'form' %>
+
 <table class="table">
   <thead>
     <tr>
@@ -10,9 +11,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td>
-          <%= link_to event.name, event_path(event), class: "text-decoration-none text-black" %>
-        </td>
+        <td><%= event.name %></td>
         <td><%= event.formatted_date %></td>
         <td><%= event.event_category.name %></td>
       </tr>
@@ -20,4 +19,3 @@
   </tbody>
   <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 </table>
-<%= link_to 'Добавить', new_event_path, class: 'btn btn-primary' %>

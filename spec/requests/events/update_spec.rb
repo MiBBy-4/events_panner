@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Event create' do
+RSpec.describe 'Event update' do
   let(:user) { create(:user) }
-  let(:event) { create(:event, datetime: Time.zone.tomorrow) }
+  let(:category) { create(:event_category, user: user) }
+  let(:event) { create(:event, datetime: Time.zone.tomorrow, event_category: category, user: user) }
   let(:params) { { event: attributes } }
 
   context 'when authenticated' do

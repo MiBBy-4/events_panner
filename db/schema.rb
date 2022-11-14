@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_109_103_323) do
+ActiveRecord::Schema[7.0].define(version: 20_221_117_084_511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -52,5 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 20_221_109_103_323) do
   end
 
   add_foreign_key 'event_categories', 'users'
+  add_foreign_key 'events', 'event_categories'
   add_foreign_key 'events', 'users'
 end

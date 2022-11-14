@@ -27,6 +27,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events, dependent: :delete_all
+  has_many :event_categories, dependent: :restrict_with_error
 
   self.ignored_columns += ['name']
   self.ignored_columns += ['surname']

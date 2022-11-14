@@ -217,6 +217,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis (5.0.5)
       redis-client (>= 0.9.0)
     redis-client (0.11.0)
@@ -352,6 +356,7 @@ DEPENDENCIES
   pundit-matchers
   rails (~> 7.0.4)
   rails-controller-testing
+  ransack
   redis
   rspec-rails
   rubocop
