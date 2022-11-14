@@ -1,12 +1,16 @@
 <header class="p-3 bg-dark text-white">
-  <div class="container">
+  <div class="container-fluid">
     <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><%= link_to "Me", root_path, class: 'nav-link px-2 text-white' %></li>
-        <li>
-          <%= link_to "Log out", destroy_user_session_path, class: 'nav-link px-2 text-white' %>
-        </li>
+      <a class="navbar-brand">Events Planner</a>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mx-5">
+        <li><%= link_to 'Профиль', root_path, class: 'nav-link px-2 text-white' %></li>
+        <li><%= link_to 'События', events_path, class: 'nav-link px-2 text-white' %></li>
       </ul>
+       <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+          <li>
+            <%= link_to 'Log out', destroy_user_session_path, class: 'nav-link px-2 text-white' %>
+          </li>
+       </ul>
     </nav>
   </div>
 </header>

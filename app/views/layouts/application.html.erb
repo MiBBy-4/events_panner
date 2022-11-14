@@ -8,14 +8,16 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "event", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
     <% if current_user %>
       <%= render 'shared/navbar' %>
     <% end %>
-    <%= render 'shared/alerts' %>
     <main class="container mt-3 main-container">
+      <%= render 'shared/alerts' %>
+      
       <%= yield %>
     </main>
   </body>

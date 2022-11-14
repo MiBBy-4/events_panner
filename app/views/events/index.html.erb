@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Категория</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td>
+          <%= link_to event.name, event_path(event), class: "text-decoration-none text-black" %>
+        </td>
+        <td><%= event.formatted_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</table>
+<%= link_to 'Добавить', new_event_path, class: 'btn btn-primary' %>
