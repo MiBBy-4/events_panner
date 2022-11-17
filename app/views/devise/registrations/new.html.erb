@@ -14,6 +14,10 @@
       </div>
 
       <div class="field">
+        <%= f.text_field :city, autocomplete: "city", placeholder: "City(optional)", class: 'authenticate-field' %>
+      </div>
+
+      <div class="field">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: 'authenticate-field' %>
       </div>
 

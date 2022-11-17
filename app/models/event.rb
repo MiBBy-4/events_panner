@@ -5,6 +5,7 @@
 # Table name: events
 #
 #  id                :bigint           not null, primary key
+#  city              :string
 #  datetime          :datetime         not null
 #  description       :text
 #  name              :string           not null

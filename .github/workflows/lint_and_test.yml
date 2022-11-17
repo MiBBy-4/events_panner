@@ -41,7 +41,7 @@ jobs:
   test:
       needs: lint
       name: Test using RSpec
-      runs-on: ubuntu-20.04
+      runs-on: ubuntu-20.04        
       services:
         postgres:
           image: postgres:14.5
@@ -75,4 +75,4 @@ jobs:
             yarn install
             bundle exec bin/rails db:test:prepare
         - name: Run RSpec
-          run: bundle exec rspec spec     
+          run: bundle exec rspec spec  

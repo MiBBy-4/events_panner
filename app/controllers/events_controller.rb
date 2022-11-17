@@ -9,7 +9,9 @@ class EventsController < AuthenticatedController
     @events = @events.decorate
   end
 
-  def show; end
+  def show
+    @weather = Events::Weather::Receive.call(@event)
+  end
 
   def new
     @event = Event.new
@@ -62,7 +64,7 @@ class EventsController < AuthenticatedController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :datetime, :event_category_id, :whole_day_event)
+    params.require(:event).permit(:name, :description, :datetime, :event_category_id, :whole_day_event, :city)
   end
 
   def load_event

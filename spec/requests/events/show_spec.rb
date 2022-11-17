@@ -19,7 +19,9 @@ RSpec.describe 'Event show' do
     context 'when authorized' do
       before do
         sign_in author
-        get event_path(event)
+        VCR.use_cassette('events/weather/receive_successfully') do
+          get event_path(event)
+        end
       end
 
       it 'assigns event' do
@@ -27,7 +29,9 @@ RSpec.describe 'Event show' do
       end
 
       it 'includes name on the page' do
-        expect(response.body).to include(event.name)
+        VCR.use_cassette('events/weather/receive_successfully') do
+          expect(response.body).to include(event.name)
+        end
       end
     end
   end
