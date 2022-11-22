@@ -13,6 +13,11 @@
   </div>
   <div class="mb-3 row">
     <div class="col-sm-10">
+      <%= f.collection_select :event_category_id, current_user.event_categories, :id, :name, {}, { class: 'form-control', selected: current_user.event_categories.first } %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-10">
       <%= f.datetime_local_field :datetime, id: :event_datetime_local  %>
       <%= f.date_field :datetime, id: :event_datetime, disabled: true, hidden: true %>
       <%= f.check_box :whole_day_event, onchange: "changeDatetimeType(this)"  %>

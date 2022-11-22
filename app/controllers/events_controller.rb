@@ -4,7 +4,8 @@ class EventsController < AuthenticatedController
   before_action :load_event, only: %i[edit update show destroy]
 
   def index
-    @pagy, @events = pagy(event_scope, items: 20)
+    @query = event_scope.includes(:event_category).ransack(params[:q])
+    @pagy, @events = pagy(@query.result(distinct: true), items: 20)
     @events = @events.decorate
   end
 
@@ -19,8 +20,9 @@ class EventsController < AuthenticatedController
   end
 
   def create
-    @event = event_scope.build event_params
-    @event.event_category_id = 1
+    @event = event_scope.build(event_params)
+
+    authorize(@event)
 
     if @event.save
       flash[:success] = 'Событие успешно добавлено!'
@@ -34,7 +36,7 @@ class EventsController < AuthenticatedController
   def update
     authorize(@event)
 
-    if @event.update event_params
+    if @event.update(event_params)
       flash[:success] = 'Событие успешно обновлено'
       redirect_to events_path
     else
@@ -60,7 +62,7 @@ class EventsController < AuthenticatedController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :datetime, :whole_day_event)
+    params.require(:event).permit(:name, :description, :datetime, :event_category_id, :whole_day_event)
   end
 
   def load_event

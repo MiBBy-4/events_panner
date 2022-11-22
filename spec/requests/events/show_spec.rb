@@ -2,7 +2,8 @@
 
 RSpec.describe 'Event show' do
   let(:author) { create(:user) }
-  let(:event) { create(:event, user: author) }
+  let(:category) { create(:event_category, user: author) }
+  let(:event) { create(:event, user: author, event_category: category) }
 
   context 'when authenticated' do
     context 'when not authorized' do

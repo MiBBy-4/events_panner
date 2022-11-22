@@ -21,6 +21,7 @@
 #
 # Foreign Keys
 #
+#  fk_rails_...  (event_category_id => event_categories.id)
 #  fk_rails_...  (user_id => users.id)
 #
 FactoryBot.define do
@@ -28,7 +29,5 @@ FactoryBot.define do
     name { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     datetime { Time.current }
-    user { User.last }
-    event_category_id { 1 }
   end
 end

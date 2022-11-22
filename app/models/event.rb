@@ -21,6 +21,7 @@
 #
 # Foreign Keys
 #
+#  fk_rails_...  (event_category_id => event_categories.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Event < ApplicationRecord
@@ -28,6 +29,7 @@ class Event < ApplicationRecord
   validates :datetime, presence: true
 
   belongs_to :user
+  belongs_to :event_category
 
   def future?
     !past?

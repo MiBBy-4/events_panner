@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event_categories.each do |event_category| %>
+      <tr>
+        <td><%= event_category.name %></td>
+        <td>
+          <%= link_to 'Редактировать', edit_event_category_path(event_category), class: 'btn btn-primary' %>
+        </td>
+        <td>
+          <%= link_to 'Удалить', event_category_path(event_category), data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</table>
+<%= link_to 'Добавить', new_event_category_path, class: 'btn btn-primary' %>

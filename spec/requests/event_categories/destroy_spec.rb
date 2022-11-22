@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Event destroy' do
+RSpec.describe 'Event Category destroy' do
   context 'when authenticated' do
     let(:user) { create(:user) }
     let(:event_category) { create(:event_category, user: user) }
-    let(:event) { create(:event, user: user, event_category: event_category) }
 
     context 'when not authorized' do
       let(:another_user) { create(:user) }
@@ -12,7 +11,7 @@ RSpec.describe 'Event destroy' do
       it 'returns NotFound' do
         sign_in another_user
 
-        expect { delete event_path(event) }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { delete event_category_path(event_category) }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -20,12 +19,12 @@ RSpec.describe 'Event destroy' do
       before do
         sign_in user
 
-        delete event_path(event)
+        delete event_category_path(event_category)
       end
 
-      it { is_expected.to be_a_valid_request('/events') }
+      it { is_expected.to be_a_valid_request('/event_categories') }
     end
   end
 
-  it_behaves_like 'not authenticated', :delete, '/events/1'
+  it_behaves_like 'not authenticated', :delete, '/event_categories/1'
 end

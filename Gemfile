@@ -66,6 +66,8 @@ gem 'pundit'
 
 gem 'pagy'
 
+gem 'ransack'
+
 gem 'draper'
 
 group :development, :test do

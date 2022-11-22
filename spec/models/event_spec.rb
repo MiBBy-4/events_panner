@@ -21,12 +21,14 @@
 #
 # Foreign Keys
 #
+#  fk_rails_...  (event_category_id => event_categories.id)
 #  fk_rails_...  (user_id => users.id)
 #
 
 RSpec.describe Event do
   describe 'associations' do
-    it { is_expected.to belong_to(:user).class_name('User') }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:event_category) }
   end
 
   describe 'validations' do
@@ -36,10 +38,15 @@ RSpec.describe Event do
 
   describe '#past?' do
     let(:user) { create(:user) }
+    let(:event_category) { create(:event_category, user: user) }
 
     context 'with not whole_day_event' do
-      let(:event_in_past) { create(:event, datetime: '01.01.2000 12:00', whole_day_event: false, user: user) }
-      let(:event_in_future) { create(:event, datetime: '31.12.2099 14:00', whole_day_event: false, user: user) }
+      let(:event_in_past) do
+        create(:event, datetime: '01.01.2000 12:00', whole_day_event: false, user: user, event_category: event_category)
+      end
+      let(:event_in_future) do
+        create(:event, datetime: '31.12.2099 14:00', whole_day_event: false, user: user, event_category: event_category)
+      end
 
       it 'returns true in past' do
         expect(event_in_past.past?).to be true
@@ -51,8 +58,12 @@ RSpec.describe Event do
     end
 
     context 'with whole_day_event' do
-      let(:event_in_past) { create(:event, datetime: Time.zone.yesterday, whole_day_event: true, user: user) }
-      let(:event_in_future) { create(:event, datetime: Time.zone.tomorrow, whole_day_event: true, user: user) }
+      let(:event_in_past) do
+        create(:event, datetime: Time.zone.yesterday, whole_day_event: true, user: user, event_category: event_category)
+      end
+      let(:event_in_future) do
+        create(:event, datetime: Time.zone.tomorrow, whole_day_event: true, user: user, event_category: event_category)
+      end
 
       it 'returns true in past' do
         expect(event_in_past.past?).to be true
