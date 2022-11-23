@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Event show' do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:author) { create(:user) }
   let(:category) { create(:event_category, user: author) }
   let(:event) { create(:event, user: author, event_category: category) }
+
+  before do
+    travel_to Time.zone.local(2022, 11, 29)
+  end
 
   context 'when authenticated' do
     context 'when not authorized' do

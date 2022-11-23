@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_117_084_511) do
+ActiveRecord::Schema[7.0].define(version: 20_221_123_143_039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -34,6 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 20_221_117_084_511) do
     t.bigint 'event_category_id', null: false
     t.boolean 'whole_day_event', default: false, null: false
     t.string 'city'
+    t.datetime 'remind_at'
+    t.string 'remind_job_id'
     t.index ['event_category_id'], name: 'index_events_on_event_category_id'
     t.index ['user_id'], name: 'index_events_on_user_id'
   end

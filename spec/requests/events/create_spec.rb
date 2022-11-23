@@ -14,11 +14,21 @@ RSpec.describe 'Event create' do
           event_category_id: event_category.id }
       end
 
+      before do
+        allow(Events::Notifications::Create).to receive(:call)
+      end
+
       it 'creates a new Event' do
         expect { event }.to change(Event, :count).by(1)
       end
 
       it { expect(event).to be_a_valid_request('/events') }
+
+      it 'receives set notification services' do
+        event
+
+        expect(Events::Notifications::Create).to have_received(:call).with(Event.last).exactly(1).time
+      end
     end
 
     context 'with invalid parameters' do

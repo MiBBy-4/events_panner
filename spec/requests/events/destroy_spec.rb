@@ -4,7 +4,7 @@ RSpec.describe 'Event destroy' do
   context 'when authenticated' do
     let(:user) { create(:user) }
     let(:event_category) { create(:event_category, user: user) }
-    let(:event) { create(:event, user: user, event_category: event_category) }
+    let(:event) { create(:event, user: user, event_category: event_category, remind_job_id: 'test') }
 
     context 'when not authorized' do
       let(:another_user) { create(:user) }
@@ -18,12 +18,18 @@ RSpec.describe 'Event destroy' do
 
     context 'when authorized' do
       before do
+        allow(Events::Notifications::Delete).to receive(:call).with(event)
+
         sign_in user
 
         delete event_path(event)
       end
 
       it { is_expected.to be_a_valid_request('/events') }
+
+      it 'receives delete notification services' do
+        expect(Events::Notifications::Delete).to have_received(:call).with(event).once
+      end
     end
   end
 
