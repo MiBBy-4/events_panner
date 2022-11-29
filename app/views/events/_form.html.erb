@@ -13,6 +13,11 @@
   </div>
   <div class="mb-3 row">
     <div class="col-sm-10">
+      <%= f.text_field :city, placeholder: 'Город', class: 'form-control', value: current_user.city %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-10">
       <%= f.collection_select :event_category_id, current_user.event_categories, :id, :name, {}, { class: 'form-control', selected: current_user.event_categories.first } %>
     </div>
   </div>
