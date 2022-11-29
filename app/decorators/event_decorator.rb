@@ -5,9 +5,16 @@ class EventDecorator < ApplicationDecorator
 
   def formatted_date
     if object.whole_day_event?
-      object.datetime.strftime('Число: %d-%m-%Y')
+      datetime_in_current_zone(object.datetime).strftime('Число: %d-%m-%Y')
     else
-      object.datetime.strftime('Число: %d-%m-%Y Время: %H:%M')
+      datetime_in_current_zone(object.datetime).strftime('Число: %d-%m-%Y Время: %H:%M')
     end
+  end
+
+  private
+
+  def datetime_in_current_zone(date)
+    user = object.user
+    Time.find_zone(user.time_zone).parse(date.to_s)
   end
 end

@@ -11,7 +11,12 @@ module Events
 
       def call
         event.remind_job_id = Events::NotificationJob.perform_at(when_to_remind, event.id)
-        event.save
+
+        if event.save
+          success(event)
+        else
+          fail!(event.errors.full_messages)
+        end
       end
 
       private

@@ -12,14 +12,14 @@ RSpec.describe Events::Weather::Receive do
   end
 
   context 'with valid params' do
-    let(:datetime) { Time.zone.tomorrow }
+    let(:datetime) { 1.day.from_now }
     let(:city) { 'Hrodna' }
 
     it 'returns succefull as a hash' do
       VCR.use_cassette('events/weather/receive_successfully') do
         receiver = described_class.call(event)
 
-        expect(receiver).to be_an_instance_of(String).and match(/Погода на день/)
+        expect(receiver.value).to be_an_instance_of(String).and match(/Погода на день/)
       end
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe Events::Weather::Receive do
         VCR.use_cassette('events/weather/receive_incorrect_date') do
           receiver = described_class.call(event)
 
-          expect(receiver).to be_an_instance_of(String).and eq('Информация недоступна')
+          expect(receiver.value).to be_an_instance_of(String).and eq('Информация недоступна')
         end
       end
     end
@@ -46,7 +46,7 @@ RSpec.describe Events::Weather::Receive do
         VCR.use_cassette('events/weather/receive_without_city') do
           receiver = described_class.call(event)
 
-          expect(receiver).to be_an_instance_of(String).and eq('Информация недоступна')
+          expect(receiver.value).to be_an_instance_of(String).and eq('Информация недоступна')
         end
       end
     end

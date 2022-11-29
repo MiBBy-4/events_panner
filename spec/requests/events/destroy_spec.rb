@@ -18,18 +18,12 @@ RSpec.describe 'Event destroy' do
 
     context 'when authorized' do
       before do
-        allow(Events::Notifications::Delete).to receive(:call).with(event)
-
         sign_in user
 
         delete event_path(event)
       end
 
       it { is_expected.to be_a_valid_request('/events') }
-
-      it 'receives delete notification services' do
-        expect(Events::Notifications::Delete).to have_received(:call).with(event).once
-      end
     end
   end
 
