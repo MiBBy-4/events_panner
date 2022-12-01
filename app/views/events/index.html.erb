@@ -10,7 +10,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td>
+        <td class="text-break">
           <%= link_to event.name, event_path(event), class: "text-decoration-none text-black" %>
         </td>
         <td><%= event.formatted_date %></td>
