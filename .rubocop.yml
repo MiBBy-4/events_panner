@@ -35,9 +35,5 @@ Lint/MissingSuper:
 Metrics/MethodLength:
   Max: 15
 
-Metrics/AbcSize:
-  Exclude: 
-    - 'app/components/**/**'
-
 RSpec/ImplicitSubject:
   Enabled: false

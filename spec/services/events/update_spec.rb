@@ -20,21 +20,12 @@ RSpec.describe Events::Update do
       expect(Events::TimeZone::Update).to have_received(:call).once
     end
 
-    it 'has event as a value' do
-      expect(instance.value).to eq(event)
+    it 'updates name' do
+      expect(event.name).to eq(params[:name])
     end
 
-    it 'receives success method' do
-      instance = described_class.new(event, params)
-      allow(instance).to receive(:success).with(event)
-
-      instance.call
-
-      expect(instance).to have_received(:success).once
-    end
-
-    it 'saves event' do
-      expect(instance.success?).to be true
+    it 'updates datetime' do
+      expect(event.datetime).to eq(Time.find_zone(user.time_zone).parse(params[:datetime].to_s))
     end
   end
 

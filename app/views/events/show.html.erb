@@ -1,22 +1,22 @@
-<div class="event-page-container">
-  <div class="event-container">
-    <h1><%= @event.name %></h1>
+<div class="event-page-container row">
+  <div class="event-container col-6">
+    <h1 class="text-break"><%= @event.name %></h1>
     <% if @event.description? %>
       <div class="event-description">
         <p>Описание события</p>
-        <p><%= @event.description %></p>
+        <p class="text-break"><%= @event.description %></p>
       </div>
     <% end %>
     <div class="event-footer">
       <div class="date"><%= @event.formatted_date %></div>
-      <div class="category"><%= @event.event_category.name %></div>
+      <div class="category"><b>Категория: </b> <%= @event.event_category.name %></div>
     </div>
-    <div class="actions d-flex">
+    <div class="actions d-flex mt-2">
       <%= link_to 'Редактировать', edit_event_path(@event), class: 'btn btn-primary' %>
-      <%= button_to 'Удалить', event_path(@event), method: :delete, class: 'btn btn-danger d-inline' %>
+      <%= button_to 'Удалить', event_path(@event), method: :delete, class: 'btn btn-danger d-inline mx-2' %>
     </div>
   </div>
-  <div class="weather-container">
+  <div class="weather-container text-center col-6">
     <%= @weather %>
   </div>
 </div>

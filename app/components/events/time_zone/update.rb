@@ -11,8 +11,7 @@ module Events
       end
 
       def call
-        event.datetime = parse_date_in_current_timezone(params[:datetime]) if params[:datetetime].present?
-        event.remind_at = parse_date_in_current_timezone(params[:remind_at]) if params[:remind_at].present?
+        set_time
 
         if event.save
           success(event)
@@ -22,6 +21,11 @@ module Events
       end
 
       private
+
+      def set_time
+        event.datetime = parse_date_in_current_timezone(params[:datetime]) if params[:datetime].present?
+        event.remind_at = parse_date_in_current_timezone(params[:remind_at]) if params[:remind_at].present?
+      end
 
       def parse_date_in_current_timezone(date)
         user = event.user

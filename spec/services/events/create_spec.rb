@@ -25,20 +25,8 @@ RSpec.describe Events::Create do
       expect(Events::Notifications::Create).to have_received(:call).once
     end
 
-    it 'has event as a value' do
-      expect(instance.value).to eq(event)
-    end
-
-    it 'receives success method' do
-      instance = described_class.new(event, params)
-      allow(instance).to receive(:success).with(event)
-      instance.call
-
-      expect(instance).to have_received(:success).once
-    end
-
-    it 'saves event' do
-      expect(instance.success?).to be true
+    it 'saves an event' do
+      expect(Event.last).to eq(event)
     end
   end
 
