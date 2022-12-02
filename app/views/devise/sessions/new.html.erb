@@ -2,7 +2,7 @@
   <div class="authenticate-form-container text-center border px-5 py-2 rounded">
     <h2 class="authenticate-method mb-5">Авторизация</h2>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
       <div class="field mb-2 ">
         <%= f.email_field :email, autocomplete: "email", placeholder: 'email', class: 'authenticate-field form-control' %>
       </div>

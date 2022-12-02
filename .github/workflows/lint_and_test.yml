@@ -43,6 +43,14 @@ jobs:
       name: Test using RSpec
       runs-on: ubuntu-20.04        
       services:
+        redis:
+          image: redis
+          env:
+            REDIS_URL: redis://localhost:6379/0
+          ports:
+            - 6379:6379
+          options: --entrypoint redis-server
+   
         postgres:
           image: postgres:14.5
           env:
