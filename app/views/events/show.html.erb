@@ -11,9 +11,9 @@
       <div class="date"><%= @event.formatted_date %></div>
       <div class="category"><%= @event.event_category.name %></div>
     </div>
-    <div class="actions">
+    <div class="actions d-flex">
       <%= link_to 'Редактировать', edit_event_path(@event), class: 'btn btn-primary' %>
-      <%= link_to 'Удалить', event_path(@event), data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+      <%= button_to 'Удалить', event_path(@event), method: :delete, class: 'btn btn-danger d-inline' %>
     </div>
   </div>
   <div class="weather-container">

@@ -23,10 +23,21 @@
   </div>
   <div class="mb-3 row">
     <div class="col-sm-10">
+      <%= f.label :datetime, 'Дата:' %>
       <%= f.datetime_local_field :datetime, id: :event_datetime_local  %>
       <%= f.date_field :datetime, id: :event_datetime, disabled: true, hidden: true %>
       <%= f.check_box :whole_day_event, onchange: "changeDatetimeType(this)"  %>
       <%= f.label :whole_day_event, 'Событие на весь день' %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-10">
+      <div id="event_remind_at_container" hidden="true">
+        <%= f.label :remind_at, 'Напомнить:' %>
+        <%= f.datetime_local_field :remind_at, disabled: true  %>
+      </div>
+      <%= f.check_box :reminder, onchange: "changeRemindAt(this)"  %>
+      <%= f.label :reminder, 'Напомнить в определенный момент' %>
     </div>
   </div>
 

@@ -9,10 +9,12 @@
 #  datetime          :datetime         not null
 #  description       :text
 #  name              :string           not null
+#  remind_at         :datetime
 #  whole_day_event   :boolean          default(FALSE), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  event_category_id :bigint           not null
+#  remind_job_id     :string
 #  user_id           :bigint           not null
 #
 # Indexes

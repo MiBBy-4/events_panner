@@ -13,7 +13,7 @@
           <%= link_to 'Редактировать', edit_event_category_path(event_category), class: 'btn btn-primary' %>
         </td>
         <td>
-          <%= link_to 'Удалить', event_category_path(event_category), data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+          <%= button_to 'Удалить', event_category_path(event_category), method: :delete, class: 'btn btn-danger d-inline' %>
         </td>
       </tr>
     <% end %>

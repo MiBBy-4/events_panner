@@ -27,6 +27,7 @@ class EventsController < AuthenticatedController
     authorize(@event)
 
     if @event.save
+      Events::Notifications::Create.call(@event)
       flash[:success] = 'Событие успешно добавлено!'
       redirect_to events_path
     else
@@ -49,6 +50,7 @@ class EventsController < AuthenticatedController
 
   def destroy
     if @event.destroy
+      Events::Notifications::Delete.call(@event)
       flash[:success] = 'Событие успешно удалено'
     else
       flash[:danger] = 'Что-то пошло не так'
@@ -64,7 +66,8 @@ class EventsController < AuthenticatedController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :datetime, :event_category_id, :whole_day_event, :city)
+    params.require(:event).permit(:name, :description, :datetime, :event_category_id, :whole_day_event, :city,
+                                  :remind_at)
   end
 
   def load_event

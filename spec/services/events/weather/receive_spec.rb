@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe Events::Weather::Receive do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:user) { create(:user) }
   let(:event_category) { create(:event_category, user: user) }
   let(:event) { create(:event, datetime: datetime, city: city, user: user, event_category: event_category) }
+
+  before do
+    travel_to Time.zone.local(2022, 11, 29)
+  end
 
   context 'with valid params' do
     let(:datetime) { Time.zone.tomorrow }
