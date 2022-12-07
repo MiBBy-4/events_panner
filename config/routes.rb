@@ -14,4 +14,13 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  namespace :api do
+    namespace :v1 do
+      namespace :users do
+        resources :sessions, only: [:create]
+        resources :registrations, only: [:create]
+      end
+    end
+  end
 end

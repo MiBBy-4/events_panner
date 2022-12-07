@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  auth_token             :string
 #  city                   :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
@@ -30,6 +31,7 @@ class User < ApplicationRecord
 
   has_many :events, dependent: :delete_all
   has_many :event_categories, dependent: :restrict_with_error
+  has_secure_token :auth_token
 
   validates :time_zone, presence: true,
                         inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: 'Timezone is not valid' }

@@ -52,6 +52,7 @@ gem 'sassc-rails'
 
 # Added gems
 # bundler-audit provides patch-level verification
+gem 'rack-cors'
 
 # Catch unsafe migrations
 gem 'strong_migrations'
@@ -73,6 +74,8 @@ gem 'draper'
 gem 'http'
 
 gem 'sidekiq'
+
+gem 'active_model_serializers'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
