@@ -9,7 +9,7 @@ module Api
         def authenticate_user
           return if current_user.present?
 
-          render_unauthorized
+          render_unauthenticated
         end
 
         def current_user

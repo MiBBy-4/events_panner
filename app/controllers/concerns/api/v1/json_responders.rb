@@ -21,10 +21,24 @@ module Api
         render json: serializer.new(result).serializable_hash
       end
 
+      def respond_with_collection(collection, serializer:, pagy:)
+        render json: {
+          data: collection,
+          pagination: {
+            page: pagy.page,
+            per_page: pagy.items
+          }
+        }, each_serializer: serializer
+      end
+
       def render_unprocessable_entity(errors)
         errors = [errors] unless errors.is_a?(Array)
 
         render json: { errors: errors }, status: :unprocessable_entity
+      end
+
+      def render_unauthenticated
+        render json: 'You are unauthenticated', status: :unauthorized
       end
 
       def render_unauthorized

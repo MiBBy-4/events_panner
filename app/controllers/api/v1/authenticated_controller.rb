@@ -5,7 +5,7 @@ module Api
     class AuthenticatedController < Api::V1::ApplicationController
       before_action :authenticate_user
 
-      include Api::V1::AuthenticatableUser
+      include Api::V1::Authenticatable
     end
   end
 end
