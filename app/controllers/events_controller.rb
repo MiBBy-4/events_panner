@@ -10,7 +10,7 @@ class EventsController < AuthenticatedController
   end
 
   def show
-    @weather = Events::Weather::Receive.call(@event)
+    @weather = Events::Weather::Receive.call(@event).value
   end
 
   def new
@@ -23,11 +23,9 @@ class EventsController < AuthenticatedController
 
   def create
     @event = event_scope.build(event_params)
-
     authorize(@event)
 
-    if @event.save
-      Events::Notifications::Create.call(@event)
+    if Events::Create.call(@event, event_params).success?
       flash[:success] = 'Событие успешно добавлено!'
       redirect_to events_path
     else
@@ -39,7 +37,7 @@ class EventsController < AuthenticatedController
   def update
     authorize(@event)
 
-    if @event.update(event_params)
+    if Events::Update.call(@event, event_params).success?
       flash[:success] = 'Событие успешно обновлено'
       redirect_to events_path
     else
@@ -49,8 +47,7 @@ class EventsController < AuthenticatedController
   end
 
   def destroy
-    if @event.destroy
-      Events::Notifications::Delete.call(@event)
+    if Events::Destroy.call(@event).success?
       flash[:success] = 'Событие успешно удалено'
     else
       flash[:danger] = 'Что-то пошло не так'

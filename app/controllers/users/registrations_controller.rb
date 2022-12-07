@@ -6,6 +6,12 @@ module Users
     after_action :create_default, only: :create
     # rubocop: enable Rails/LexicallyScopedActionFilter
 
+    def new
+      super do
+        @time_zones = ActiveSupport::TimeZone.all.sort
+      end
+    end
+
     private
 
     def create_default

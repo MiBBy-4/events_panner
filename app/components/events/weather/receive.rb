@@ -14,7 +14,7 @@ module Events
       def call
         weather = build_weather
 
-        weather.presence || 'Информация недоступна'
+        success(weather.presence || 'Информация недоступна')
       end
 
       private

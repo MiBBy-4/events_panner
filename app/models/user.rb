@@ -13,6 +13,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  time_zone              :string           default("UTC"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -29,6 +30,9 @@ class User < ApplicationRecord
 
   has_many :events, dependent: :delete_all
   has_many :event_categories, dependent: :restrict_with_error
+
+  validates :time_zone, presence: true,
+                        inclusion: { in: ActiveSupport::TimeZone.all.map(&:name), message: 'Timezone is not valid' }
 
   self.ignored_columns += ['name']
   self.ignored_columns += ['surname']

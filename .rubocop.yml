@@ -31,3 +31,9 @@ Style/HashSyntax:
 
 Lint/MissingSuper:
   Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+RSpec/ImplicitSubject:
+  Enabled: false
