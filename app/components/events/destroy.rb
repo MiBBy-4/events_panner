@@ -11,6 +11,7 @@ module Events
     def call
       if event.destroy
         Events::Notifications::Delete.call(event)
+        success(event)
       else
         fail!(event.errors.full_messages)
       end
