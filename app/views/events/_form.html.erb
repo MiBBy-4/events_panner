@@ -22,21 +22,21 @@
     </div>
   </div>
   <div class="mb-3 row">
-    <div class="col-sm-10">
+    <div class="col-sm-10" data-controller="events">
       <%= f.label :datetime, 'Дата:' %>
-      <%= f.datetime_local_field :datetime, id: :event_datetime_local  %>
-      <%= f.date_field :datetime, id: :event_datetime, disabled: true, hidden: true %>
-      <%= f.check_box :whole_day_event, onchange: "changeDatetimeType(this)"  %>
+      <%= f.datetime_local_field :datetime, id: :event_datetime_local, data: { "events-target": "datetimeLocal" }  %>
+      <%= f.date_field :datetime, id: :event_datetime, disabled: true, hidden: true, data: { "events-target": "datetime" } %>
+      <%= f.check_box :whole_day_event, data: { action: 'click->events#changeDatetimeType', "events-target": 'wholeDayEvent' }  %>
       <%= f.label :whole_day_event, 'Событие на весь день' %>
     </div>
   </div>
   <div class="mb-3 row">
-    <div class="col-sm-10">
-      <div id="event_remind_at_container" hidden="true">
+    <div class="col-sm-10" data-controller="events">
+      <div id="event_remind_at_container" hidden="true" data-events-target="remindContainer">
         <%= f.label :remind_at, 'Напомнить:' %>
-        <%= f.datetime_local_field :remind_at, disabled: true  %>
+        <%= f.datetime_local_field :remind_at, disabled: true, data: { "events-target": "remindField" }  %>
       </div>
-      <%= f.check_box :reminder, onchange: "changeRemindAt(this)"  %>
+      <%= f.check_box :reminder, data: { action: 'click->events#changeRemindAt' } %>
       <%= f.label :reminder, 'Напомнить в определенный момент' %>
     </div>
   </div>
