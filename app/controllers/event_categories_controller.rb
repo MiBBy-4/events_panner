@@ -16,7 +16,7 @@ class EventCategoriesController < AuthenticatedController
   def create
     @event_category = event_category_scope.build(event_category_params)
 
-    if @event_category.save
+    if EventCategories::Create.call(@event_category).success?
       flash[:success] = 'Категория успешно добавлена!'
       redirect_to event_categories_path
     else
@@ -26,7 +26,7 @@ class EventCategoriesController < AuthenticatedController
   end
 
   def update
-    if @event_category.update(event_category_params)
+    if EventCategories::Update.call(@event_category, event_category_params).success?
       flash[:success] = 'Категория успешно обновлена'
       redirect_to event_categories_path
     else
@@ -36,7 +36,7 @@ class EventCategoriesController < AuthenticatedController
   end
 
   def destroy
-    if @event_category.destroy
+    if EventCategories::Destroy.call(@event_category).success?
       flash.now[:success] = 'Категория успешно удалена'
     else
       flash.now[:danger] = 'Что-то пошло не так'

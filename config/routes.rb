@@ -21,6 +21,8 @@ Rails.application.routes.draw do
         resources :sessions, only: [:create]
         resources :registrations, only: [:create]
       end
+
+      resources :event_categories, only: [:index, :create, :update, :destroy]
     end
   end
 end
