@@ -6,6 +6,7 @@ module Api
       before_action :authenticate_user
 
       include Api::V1::Authenticatable
+      include Api::V1::Authorization
     end
   end
 end

@@ -9,16 +9,16 @@ module Api
         rescue_from ActiveRecord::RecordNotFound, with: :respond_with_not_found
       end
 
-      def respond_with_resource(result, serializer:)
+      def respond_with_resource(result, serializer:, options: {})
         if result.success?
-          respond_with_serialized_resource(result.value, serializer: serializer)
+          respond_with_serialized_resource(result.value, serializer: serializer, options: options)
         else
           render_unprocessable_entity(result.error)
         end
       end
 
-      def respond_with_serialized_resource(result, serializer:)
-        render json: serializer.new(result).serializable_hash
+      def respond_with_serialized_resource(result, serializer:, options: {})
+        render json: serializer.new(result, options: options).serializable_hash
       end
 
       def respond_with_collection(collection, serializer:, pagy:)

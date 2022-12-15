@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
 
       resources :event_categories, only: [:index, :create, :update, :destroy]
+      resources :events, only: [:index, :show, :create, :update, :destroy]
     end
   end
 end

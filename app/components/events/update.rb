@@ -23,7 +23,9 @@ module Events
       time_updater = Events::TimeZone::Update.call(event, params)
 
       if time_updater.success?
-        success(event) if reschedule_job
+        reschedule_job
+
+        success(event)
       else
         fail!(time_updater.error || notification_updater.error)
       end
